@@ -32,6 +32,6 @@
 
     go run .
 
-### Add bew module requirements
+### Add new module requirements
 
     go mod tidy
