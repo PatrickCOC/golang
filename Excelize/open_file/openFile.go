@@ -7,7 +7,7 @@ import (
 	"github.com/xuri/excelize/v2"
 )
 
-func main() {
+func open() {
 	f, err := excelize.OpenFile("simple.xlsx")
 	if err != nil {
 		fmt.Println(err)

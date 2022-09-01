@@ -19,19 +19,6 @@ type input struct {
 	value string
 }
 
-func toChar(i int) rune {
-	return rune('A' - 1 + i)
-}
-
-func tableHeader(f *excelize.File, data []*input) {
-	for idx, v := range data {
-		log.Print(v)
-		if v != nil {
-			f.SetCellValue("Sheet1", string(toChar(idx))+"1", v.value)
-		}
-	}
-}
-
 func downloadImage(url string) string {
 
 	// don't worry about errors
@@ -93,7 +80,9 @@ func simple() {
 			fmt.Println(err)
 			return
 		}
-		if err := f.SetSheetRow(sheetName, startCell, &row); err != nil {
+		// str := fmt.Sprintf("%v", row[0])
+		a, _ := row[0].([]interface{})
+		if err := f.SetSheetRow(sheetName, startCell, &a); err != nil {
 			fmt.Println(err)
 			return
 		}
@@ -190,7 +179,7 @@ func simple() {
 	// }
 
 	// If Image is url
-	url := ""
+	url := "s"
 	if name := downloadImage(url); name != "" {
 		if err := f.AddPicture(sheetName, "A10", name, `{
 			"x_offset": 15,
